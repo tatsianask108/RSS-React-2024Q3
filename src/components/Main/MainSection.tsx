@@ -2,6 +2,7 @@ import React from 'react';
 import ListView from '../ListView/ListView';
 import getApiData from '../../services/ApiService';
 import { IPlanet } from '../../types/types';
+import Search from '../Search/Search';
 
 interface IState {
   planetsList: IPlanet[];
@@ -12,22 +13,27 @@ class MainSection extends React.Component {
     planetsList: [],
   };
 
-  getPlanets = async () => {
+  getPlanets = async (searchValue: string) => {
     this.setState({
-      planetsList: await getApiData(),
+      planetsList: await getApiData(searchValue),
     });
     // console.log(this.state.planetsList)
   };
 
   componentDidMount(): void {
-    this.getPlanets();
+    this.getPlanets(localStorage.getItem('searchValueTS') ?? '');
   }
 
   render() {
     return (
-      <main>
-        <ListView planetsList={this.state.planetsList} />
-      </main>
+      <>
+        <section>
+          <Search planetList={this.getPlanets} />
+        </section>
+        <section>
+          <ListView planetsList={this.state.planetsList} />
+        </section>
+      </>
     );
   }
 }

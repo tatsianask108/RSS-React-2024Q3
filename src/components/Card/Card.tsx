@@ -18,5 +18,4 @@ class Card extends React.Component<CardType> {
     );
   }
 }
-
 export default Card;
