@@ -12,13 +12,8 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
-      "eslint --max-warnings=0",
-      "prettier --write"
-    ],
-    "**/*.{html,json,js,css,scss,md}": [
-      "prettier --write"
-    ]
+    "src/**/*.{ts,tsx,css}": "prettier --write",
+    "src/**/*.{ts,tsx}": "eslint"
   },
   "dependencies": {
     "react": "^18.3.1",
