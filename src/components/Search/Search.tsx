@@ -24,12 +24,23 @@ class Search extends React.Component<IProps> {
     localStorage.setItem('searchValueTS', searchValue);
   };
 
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    this.setState({ searchValue: e.target.value });
+  };
+
   render() {
     return (
       <>
         <h2>Search planets:</h2>
         <form className={styles.form} onSubmit={this.handleSubmit}>
-          <input type="search" placeholder="Search..." className={styles.input} ref={this.inputRef} />
+          <input
+            type="search"
+            placeholder="Search..."
+            className={styles.input}
+            ref={this.inputRef}
+            value={this.state.searchValue || ''}
+            onChange={this.handleInputChange}
+          />
           <button type="submit">Search</button>
         </form>
       </>
