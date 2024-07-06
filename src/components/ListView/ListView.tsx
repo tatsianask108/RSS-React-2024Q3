@@ -12,11 +12,15 @@ class ListView extends React.Component<ListViewType> {
     return (
       <>
         <h2>Search results: </h2>
-        <div className={styles.listView}>
-          {this.props.planetsList.map((planet, index) => (
-            <Card key={planet.name + '_' + index} planet={planet} />
-          ))}
-        </div>
+        {this.props.planetsList.length ? (
+          <div className={styles.listView}>
+            {this.props.planetsList.map((planet, index) => (
+              <Card key={planet.name + '_' + index} planet={planet} />
+            ))}
+          </div>
+        ) : (
+          <p className={styles.notFound}>Nothing was found</p>
+        )}
       </>
     );
   }
