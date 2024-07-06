@@ -2,5 +2,17 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border: 1px solid #213547;
+  background-color: #fff;
+  transition: transform 0.2s linear;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.info {
+  margin: 5px;
 }

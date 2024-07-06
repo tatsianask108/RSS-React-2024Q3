@@ -11,9 +11,9 @@ class Card extends React.Component<CardType> {
     return (
       <div className={styles.card}>
         <h3>{this.props.planet.name}</h3>
-        <p>terrain: {this.props.planet.terrain}</p>
-        <p>climate: {this.props.planet.climate}</p>
-        <p>population: {this.props.planet.population}</p>
+        <p className={styles.info}>terrain: {this.props.planet.terrain}</p>
+        <p className={styles.info}>climate: {this.props.planet.climate}</p>
+        <p className={styles.info}>population: {this.props.planet.population}</p>
       </div>
     );
   }
