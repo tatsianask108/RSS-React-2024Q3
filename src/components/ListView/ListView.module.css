@@ -1,0 +1,10 @@
+.listView {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 300px));
+  gap: 25px;
+  color: #213547;
+}
+
+.notFound {
+  font-size: 20px;
+}
