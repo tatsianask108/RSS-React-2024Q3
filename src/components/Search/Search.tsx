@@ -1,51 +1,41 @@
 import styles from './Search.module.css';
-import React, { createRef } from 'react';
+import React, { useState } from 'react';
+import Button from '../shared/Button/Button';
+// import { ISearchState, ISearchProps } from '../../types/types';
+import { getSearchValueFromLS, setSearchValueToLS } from '../../utils/utils';
 
-interface IState {
-  searchValue: string | null;
+interface ISearchProps {
+  searchFunction: (searchValue: string) => Promise<void>;
 }
 
-interface IProps {
-  planetList: (searchValue: string) => void;
-}
+const Search: React.FC<ISearchProps> = ({ searchFunction }) => {
+  const [searchValue, setSearchValue] = useState(getSearchValueFromLS());
 
-class Search extends React.Component<IProps> {
-  state: IState = {
-    searchValue: localStorage.getItem('searchValueTS'),
-  };
-
-  inputRef = createRef<HTMLInputElement>();
-
-  handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const searchValue = this.inputRef.current?.value.trim() || '';
-    this.setState({ searchValue });
-    this.props.planetList(searchValue);
-    localStorage.setItem('searchValueTS', searchValue);
+    searchFunction?.(searchValue);
+    setSearchValueToLS(searchValue);
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ searchValue: e.target.value });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearchValue(e.target.value);
   };
 
-  render() {
-    return (
-      <>
-        <h2>Search planets:</h2>
-        <form className={styles.form} onSubmit={this.handleSubmit}>
-          <input
-            type="search"
-            placeholder="Search..."
-            className={styles.input}
-            ref={this.inputRef}
-            value={this.state.searchValue || ''}
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Search</button>
-        </form>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h2>Search planets:</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="search"
+          placeholder="Search..."
+          className={styles.input}
+          value={searchValue || ''}
+          onChange={handleInputChange}
+        />
+        <Button type={'submit'}>Search</Button>
+      </form>
+    </>
+  );
+};
 
 export default Search;
