@@ -1,0 +1,24 @@
+.btn {
+  border-radius: 10px;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  border-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s linear;
+
+  &:hover {
+    border-color: transparent;
+    background-color: rgba(100, 108, 255, 0.685);
+  }
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  @media (prefers-color-scheme: light) {
+    background-color: #f9f9f9;
+  }
+}
