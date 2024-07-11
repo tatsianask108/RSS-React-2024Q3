@@ -3,8 +3,7 @@ import ListView from '../ListView/ListView';
 import getApiData from '../../services/ApiService';
 import Search from '../Search/Search';
 import Loader from '../Loader/Loader';
-// import { IState } from '../../types/types';
-import { getSearchValueFromLS } from '../../utils/utils';
+import { getSearchValueFromLS } from '../../utils/localStorage';
 
 const MainSection = () => {
   const [planetsList, setPlanetsList] = useState([]);
@@ -32,7 +31,7 @@ const MainSection = () => {
         <Loader />
       ) : (
         <section>
-          <ListView planetsList={planetsList} title={'Search results: '} />
+          <ListView itemsList={planetsList} title={'Search results: '} />
         </section>
       )}
     </>

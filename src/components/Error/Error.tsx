@@ -1,20 +1,13 @@
 import React from 'react';
 
-interface IProps {
-  children: React.ReactNode;
-  fallback: React.ReactNode;
-}
+import { IErrorProps, IErrorState } from './types';
 
-interface IState {
-  hasError: boolean;
-}
-
-class ErrorBoundary extends React.Component<IProps, IState> {
-  state: IState = {
+class ErrorBoundary extends React.Component<IErrorProps, IErrorState> {
+  state: IErrorState = {
     hasError: false,
   };
 
-  static getDerivedStateFromError(): IState {
+  static getDerivedStateFromError(): IErrorState {
     return { hasError: true };
   }
 

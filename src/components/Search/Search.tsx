@@ -1,19 +1,15 @@
 import styles from './Search.module.css';
 import React, { useState } from 'react';
 import Button from '../shared/Button/Button';
-// import { ISearchState, ISearchProps } from '../../types/types';
-import { getSearchValueFromLS, setSearchValueToLS } from '../../utils/utils';
-
-interface ISearchProps {
-  searchFunction: (searchValue: string) => Promise<void>;
-}
+import { getSearchValueFromLS, setSearchValueToLS } from '../../utils/localStorage';
+import { ISearchProps } from './types';
 
 const Search: React.FC<ISearchProps> = ({ searchFunction }) => {
   const [searchValue, setSearchValue] = useState(getSearchValueFromLS());
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    searchFunction?.(searchValue);
+    searchFunction(searchValue);
     setSearchValueToLS(searchValue);
   };
 
@@ -29,7 +25,7 @@ const Search: React.FC<ISearchProps> = ({ searchFunction }) => {
           type="search"
           placeholder="Search..."
           className={styles.input}
-          value={searchValue || ''}
+          value={searchValue}
           onChange={handleInputChange}
         />
         <Button type={'submit'}>Search</Button>

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IButton } from '../../../types/types';
+import { IButton } from './types';
 
 const Button: FC<IButton> = ({ children, ...props }) => {
   return <button {...props}>{children}</button>;
