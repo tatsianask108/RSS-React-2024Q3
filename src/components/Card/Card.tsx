@@ -1,21 +1,22 @@
 import React from 'react';
-import { IPlanet } from '../../types/types';
 import styles from './Card.module.css';
+import { TCardProps } from './types';
+import { CARD_FIELDS } from './constants';
 
-type CardType = {
-  planet: IPlanet;
+const Card: React.FC<TCardProps> = ({ planet }) => {
+  const renderCardFields = () => {
+    return CARD_FIELDS.map((key) => (
+      <p key={key} className={styles.info}>
+        {key}: {planet[key]}
+      </p>
+    ));
+  };
+
+  return (
+    <div className={styles.card}>
+      <h3>{planet.name}</h3>
+      {renderCardFields()}
+    </div>
+  );
 };
-
-class Card extends React.Component<CardType> {
-  render() {
-    return (
-      <div className={styles.card}>
-        <h3>{this.props.planet.name}</h3>
-        <p className={styles.info}>terrain: {this.props.planet.terrain}</p>
-        <p className={styles.info}>climate: {this.props.planet.climate}</p>
-        <p className={styles.info}>population: {this.props.planet.population}</p>
-      </div>
-    );
-  }
-}
 export default Card;
