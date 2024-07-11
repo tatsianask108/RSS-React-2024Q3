@@ -17,9 +17,9 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  &:hover {
+    color: #535bf2;
+  }
 }
 
 body {
@@ -48,14 +48,14 @@ button {
   border-color: transparent;
   cursor: pointer;
   transition: all 0.3s linear;
-}
-button:hover {
-  border-color: transparent;
-  background-color: rgba(100, 108, 255, 0.685);
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  &:hover {
+    border-color: transparent;
+    background-color: rgba(100, 108, 255, 0.685);
+  }
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
 
 @media (prefers-color-scheme: light) {
