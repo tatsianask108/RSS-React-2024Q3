@@ -1,17 +1,25 @@
 import './App.css';
-import React from 'react';
-import Header from './components/Header/Header';
-import MainSection from './components/Main/MainSection';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import NotFoundPage from './components/pages/NotFoundPage';
+import DetailedPage from './components/pages/DetailedPage';
+import MainPage from './components/pages/Main/MainPage';
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <MainSection />
-      </>
-    );
-  }
-}
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <MainPage />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: 'details/:planetName',
+        element: <DetailedPage />,
+      },
+    ],
+  },
+]);
+
+const App = (): React.ReactElement => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
