@@ -12,10 +12,14 @@ const MainSection = () => {
   const fetchPlanets = async (searchValue: string) => {
     setLoading(true);
 
-    const planetsList = await getApiData(searchValue);
-
-    setPlanetsList(planetsList);
-    setLoading(false);
+    try {
+      const planetsList = await getApiData(searchValue);
+      setPlanetsList(planetsList);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
