@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ListView from '../ListView/ListView';
 import getApiData from '../../services/ApiService';
 import Search from '../Search/Search';
-import Loader from '../Loader/Loader';
+import Loader from '../shared/Loader/Loader';
 import { getSearchValueFromLS } from '../../utils/localStorage';
 
 const MainSection = () => {
