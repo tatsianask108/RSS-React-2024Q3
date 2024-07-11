@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
-import ErrorBoundary from './components/Error/Error.tsx';
+
+import ErrorBoundary from './components/Error/ErrorBoundary.tsx';
+import FallBack from './components/Error/FallBack.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ErrorBoundary fallback={<p style={{ fontSize: 40, color: '#FFF' }}>An error occurred. Please, reload the page</p>}>
+    <ErrorBoundary fallback={<FallBack />}>
       <App />
     </ErrorBoundary>
   </React.StrictMode>
