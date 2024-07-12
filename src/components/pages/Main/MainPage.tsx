@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import ListView from '../../ListView/ListView';
+import CardList from '../../CardList/CardList';
 import { fetchAllPlanets } from '../../../services/ApiService';
 import Search from '../../Search/Search';
 import Loader from '../../shared/Loader/Loader';
@@ -41,7 +41,7 @@ const MainPage = () => {
           <Loader />
         ) : (
           <section>
-            <ListView itemsList={planetsList} title={'Search results: '} />
+            <CardList itemsList={planetsList} title={'Search results: '} />
           </section>
         )}
         <Outlet />
