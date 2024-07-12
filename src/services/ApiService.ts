@@ -1,4 +1,4 @@
-const getApiData = async (searchValue: string) => {
+export const fetchAllPlanets = async (searchValue: string) => {
   let url = 'https://swapi.dev/api/planets/';
   if (searchValue) {
     url = `${url}?search=${searchValue}`;
@@ -17,4 +17,14 @@ const getApiData = async (searchValue: string) => {
   }
 };
 
-export default getApiData;
+const URL = 'https://swapi.dev/api/planets/';
+
+export const fetchPlanet = async (planetId: string) => {
+  try {
+    const response = await fetch(`${URL}${planetId}`);
+    const data: IPlanet = await response.json();
+    return data;
+  } catch (e) {
+    console.log('Error fetching data', e);
+  }
+};

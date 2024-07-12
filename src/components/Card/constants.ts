@@ -1,1 +1,1 @@
-export const CARD_FIELDS: (keyof IPlanet)[] = ['terrain', 'climate', 'population'];
+export const CARD_FIELDS: (keyof IPlanet)[] = ['terrain', 'climate'];

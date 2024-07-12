@@ -1,0 +1,36 @@
+.outlet {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  background-color: rgb(34, 58, 75);
+  padding: 15px;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.btnClose {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 32, 44, 0.452);
+}
+
+.info {
+  font-size: 25px;
+  color: #fff;
+}

@@ -3,4 +3,8 @@ interface IPlanet {
   terrain: string;
   climate: string;
   population: string;
+  rotation_period: string;
+  orbital_period: string;
+  diameter: string;
+  url: string;
 }

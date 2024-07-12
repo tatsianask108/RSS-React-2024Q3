@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
 import styles from './ListView.module.css';
 import { TListView } from './types';
+import { createCardUrl } from '../../utils/utils';
 
 const ListView = ({ itemsList: planetsList, title }: TListView) => {
   return (
@@ -12,7 +13,7 @@ const ListView = ({ itemsList: planetsList, title }: TListView) => {
         planetsList.length ? (
           <div className={styles.listView}>
             {planetsList.map((planet, index) => (
-              <NavLink key={planet.name} to={`/details/${planet.name}`}>
+              <NavLink key={planet.name} to={`${createCardUrl(planet.url)}`}>
                 <Card key={`${planet.name}_${index}`} planet={planet} />
               </NavLink>
             ))}
