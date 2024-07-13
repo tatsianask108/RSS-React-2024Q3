@@ -24,10 +24,11 @@ const DetailedPage = () => {
           const planet = await fetchPlanet(planetId);
           if (planet) {
             setPlanet(planet);
-            setLoading(false);
           }
         } catch (e) {
           console.error('Error fetching planet', e);
+        } finally {
+          setLoading(false);
         }
       } else {
         console.error('Planet id was not found in the URL');

@@ -10,7 +10,7 @@
     "format:fix": "prettier . --write -l",
     "preview": "vite preview",
     "prepare": "husky",
-    "test": "vitest",
+    "test": "vitest --watch=false",
     "coverage": "vitest run --coverage.enabled --coverage.all"
   },
   "lint-staged": {

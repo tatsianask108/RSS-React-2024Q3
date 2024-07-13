@@ -18,7 +18,7 @@ const mockPlanetsList: IPlanet[] = Array.from({ length: 10 }, () => ({
 const renderCardList = (planetsList: IPlanet[]) =>
   render(
     <BrowserRouter>
-      <CardList itemsList={planetsList} title="Planets List" />
+      <CardList itemsList={planetsList} currentPage={1} />
     </BrowserRouter>
   );
 

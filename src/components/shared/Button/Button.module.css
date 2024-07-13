@@ -13,9 +13,14 @@
     border-color: transparent;
     background-color: rgba(100, 108, 255, 0.685);
   }
+
   &:focus,
   &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  &:disabled {
+    pointer-events: none;
   }
 
   @media (prefers-color-scheme: light) {

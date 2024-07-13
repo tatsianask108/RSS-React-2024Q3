@@ -1,9 +1,10 @@
-export const createCardUrl = (url: string) => {
+export const createCardUrl = (currentPage: number, url: string) => {
   const arr = url.split('/');
-  return `/details/planetId=${arr[arr.length - 2]}`;
+  return `page/${currentPage}/details/planetId=${arr[arr.length - 2]}`;
 };
 
 export const getPlanetIdFromUseParams = (str: string) => {
-  const parts = str.split('=');
-  return parts[1];
+  //TODO handle if there is more than one '='
+  const chunks = str.split('=');
+  return chunks[1];
 };

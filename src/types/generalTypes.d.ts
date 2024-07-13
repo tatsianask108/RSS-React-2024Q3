@@ -1,3 +1,10 @@
+interface IApiData {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: IPlanet[];
+}
+
 interface IPlanet {
   name: string;
   terrain: string;
