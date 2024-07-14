@@ -1,4 +1,4 @@
-.listView {
+.cardList {
   display: grid;
   grid-template-columns: repeat(3, minmax(200px, 300px));
   gap: 25px;

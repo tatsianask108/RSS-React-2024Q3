@@ -1,51 +1,38 @@
 import styles from './Search.module.css';
-import React, { createRef } from 'react';
+import React from 'react';
+import Button from '../shared/Button/Button';
+import { ISearchProps } from './types';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-interface IState {
-  searchValue: string | null;
-}
+const SEARCH_VALUE = 'searchValueTS';
 
-interface IProps {
-  planetList: (searchValue: string) => void;
-}
+const Search: React.FC<ISearchProps> = ({ searchFunction }) => {
+  const { setValueToLS, getValueFromLS } = useLocalStorage(SEARCH_VALUE);
 
-class Search extends React.Component<IProps> {
-  state: IState = {
-    searchValue: localStorage.getItem('searchValueTS'),
-  };
-
-  inputRef = createRef<HTMLInputElement>();
-
-  handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const searchValue = this.inputRef.current?.value.trim() || '';
-    this.setState({ searchValue });
-    this.props.planetList(searchValue);
-    localStorage.setItem('searchValueTS', searchValue);
+    searchFunction(getValueFromLS());
   };
 
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ searchValue: e.target.value });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setValueToLS(e.target.value);
   };
 
-  render() {
-    return (
-      <>
-        <h2>Search planets:</h2>
-        <form className={styles.form} onSubmit={this.handleSubmit}>
-          <input
-            type="search"
-            placeholder="Search..."
-            className={styles.input}
-            ref={this.inputRef}
-            value={this.state.searchValue || ''}
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Search</button>
-        </form>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h2>Search planets:</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="search"
+          placeholder="Search..."
+          className={styles.input}
+          value={getValueFromLS()}
+          onChange={handleInputChange}
+        />
+        <Button type={'submit'}>Search</Button>
+      </form>
+    </>
+  );
+};
 
 export default Search;
