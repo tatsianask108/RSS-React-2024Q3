@@ -9,7 +9,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <MainPage />,
     errorElement: <NotFoundPage />,
-    //TODO fix 404 Page - remove errorElement
     children: [
       {
         path: 'page/:pageNumber/details/:planetId',

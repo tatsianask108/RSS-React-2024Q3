@@ -1,20 +1,21 @@
 import styles from './Search.module.css';
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../shared/Button/Button';
-import { getSearchValueFromLS, setSearchValueToLS } from '../../utils/localStorage';
 import { ISearchProps } from './types';
+import useLocalStorage from '../../hooks/useLocalStorage';
+
+const SEARCH_VALUE = 'searchValueTS';
 
 const Search: React.FC<ISearchProps> = ({ searchFunction }) => {
-  const [searchValue, setSearchValue] = useState(getSearchValueFromLS());
+  const { setValueToLS, getValueFromLS } = useLocalStorage(SEARCH_VALUE);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    searchFunction(searchValue);
-    setSearchValueToLS(searchValue);
+    searchFunction(getValueFromLS());
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchValue(e.target.value);
+    setValueToLS(e.target.value);
   };
 
   return (
@@ -25,7 +26,7 @@ const Search: React.FC<ISearchProps> = ({ searchFunction }) => {
           type="search"
           placeholder="Search..."
           className={styles.input}
-          value={searchValue}
+          value={getValueFromLS()}
           onChange={handleInputChange}
         />
         <Button type={'submit'}>Search</Button>

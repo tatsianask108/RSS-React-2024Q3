@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
-import { describe, test, expect } from 'vitest';
+// import '@testing-library/jest-dom';
+import { describe, test as it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CardList from '../CardList';
 import { BrowserRouter } from 'react-router-dom';
@@ -23,14 +23,14 @@ const renderCardList = (planetsList: IPlanet[]) =>
   );
 
 describe('CardList Component: ', () => {
-  test('renders the specified number of cards (10)', () => {
+  it('renders the specified number of cards (10)', () => {
     renderCardList(mockPlanetsList);
 
     const cards = screen.getAllByRole('link');
     expect(cards).toHaveLength(10);
   });
 
-  test('appropriate message is displayed if no cards are present', () => {
+  it('appropriate message is displayed if no cards are present', () => {
     renderCardList([]);
 
     const element = screen.getByText('Nothing was found');

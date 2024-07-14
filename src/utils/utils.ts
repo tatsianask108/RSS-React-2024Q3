@@ -4,7 +4,6 @@ export const createCardUrl = (currentPage: number, url: string) => {
 };
 
 export const getPlanetIdFromUseParams = (str: string) => {
-  //TODO handle if there is more than one '='
   const chunks = str.split('=');
   return chunks[1];
 };

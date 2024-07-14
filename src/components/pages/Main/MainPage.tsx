@@ -3,12 +3,14 @@ import CardList from '../../CardList/CardList';
 import { fetchAllPlanets } from '../../../services/ApiService';
 import Search from '../../Search/Search';
 import Loader from '../../shared/Loader/Loader';
-import { getSearchValueFromLS } from '../../../utils/localStorage';
 import Header from '../../Header/Header';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
 import styles from './MainPage.module.css';
 import Pagination from '../../Pagination/Pagination';
+import useLocalStorage from '../../../hooks/useLocalStorage';
+
+const SEARCH_VALUE = 'searchValueTS';
 
 const MainPage = () => {
   const [apiData, setApiData] = useState<IApiData>();
@@ -16,11 +18,12 @@ const MainPage = () => {
   const [isLoading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+  const { getValueFromLS } = useLocalStorage(SEARCH_VALUE);
+  const [searchValue] = useState(getValueFromLS());
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
     setSearchParams({ page: String(newPage) });
-    console.log('page changed, new page: ', newPage);
   };
 
   const getPlanets = useCallback(
@@ -44,11 +47,11 @@ const MainPage = () => {
   );
 
   useEffect(() => {
-    getPlanets(getSearchValueFromLS());
-  }, [page, getPlanets]);
+    getPlanets(searchValue);
+  }, [page, getPlanets, searchValue]);
 
   return (
-    <>
+    <div data-testid="mainPage">
       <Header />
       <main className={styles.main}>
         <section>
@@ -64,7 +67,7 @@ const MainPage = () => {
         )}
         <Outlet />
       </main>
-    </>
+    </div>
   );
 };
 

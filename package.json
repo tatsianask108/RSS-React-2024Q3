@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "test": "vitest --watch=false",
-    "coverage": "vitest run --coverage.enabled --coverage.all"
+    "coverage": "vitest run --coverage"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,css}": "prettier --write -l",
