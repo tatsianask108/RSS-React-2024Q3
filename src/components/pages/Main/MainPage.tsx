@@ -5,24 +5,27 @@ import Search from '../../Search/Search';
 import Loader from '../../shared/Loader/Loader';
 import Header from '../../Header/Header';
 import { Outlet, useSearchParams } from 'react-router-dom';
-
 import styles from './MainPage.module.css';
 import Pagination from '../../Pagination/Pagination';
 import useLocalStorage from '../../../hooks/useLocalStorage';
-
-const SEARCH_VALUE = 'searchValueTS';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../state/store';
+import { changePages } from '../../../state/pageSlice';
+import { SEARCH_VALUE } from '../../../constants';
 
 const MainPage = () => {
   const [apiData, setApiData] = useState<IApiData>();
   const [planetsList, setPlanetsList] = useState<IPlanet[]>();
   const [isLoading, setLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+  const [, setSearchParams] = useSearchParams();
   const { getValueFromLS } = useLocalStorage(SEARCH_VALUE);
   const [searchValue] = useState(getValueFromLS());
 
-  const handlePageChange = (newPage: number) => {
-    setPage(newPage);
+  const page = useSelector((state: RootState) => state.page.number);
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleChangePage = (newPage: number) => {
+    dispatch(changePages(newPage));
     setSearchParams({ page: String(newPage) });
   };
 
@@ -62,7 +65,7 @@ const MainPage = () => {
         ) : (
           <section>
             <CardList itemsList={planetsList} currentPage={page} />
-            <Pagination apiData={apiData} currentPage={page} changePage={handlePageChange} />
+            <Pagination apiData={apiData} currentPage={page} changePage={handleChangePage} />
           </section>
         )}
         <Outlet />

@@ -4,7 +4,6 @@ import { IPaginationProps } from './types';
 
 const Pagination: React.FC<IPaginationProps> = ({ currentPage, changePage, apiData }) => {
   const isPrevDisabled = () => {
-    // console.log(response);
     return !apiData?.previous || apiData.results.length < 10;
   };
 

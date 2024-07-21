@@ -15,3 +15,7 @@ interface IPlanet {
   diameter: string;
   url: string;
 }
+
+interface IPageState {
+  number: number;
+}
