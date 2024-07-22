@@ -1,6 +1,7 @@
 export const createCardUrl = (currentPage: number, url: string) => {
-  const arr = url.split('/');
-  return `page/${currentPage}/details/planetId=${arr[arr.length - 2]}`;
+  const parsedUrl = url.split('/');
+  const planetId = parsedUrl[parsedUrl.length - 2];
+  return `page/${currentPage}/details/planetId=${planetId}`;
 };
 
 export const getPlanetIdFromUseParams = (str: string) => {

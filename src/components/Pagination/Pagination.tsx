@@ -1,14 +1,15 @@
+import { cardsPerPage } from '../../constants';
 import Button from '../shared/Button/Button';
 import styles from './Pagination.module.css';
 import { IPaginationProps } from './types';
 
 const Pagination: React.FC<IPaginationProps> = ({ currentPage, changePage, apiData }) => {
   const isPrevDisabled = () => {
-    return !apiData?.previous || apiData.results.length < 10;
+    return !apiData?.previous || apiData.results.length < cardsPerPage;
   };
 
   const isNextDisabled = () => {
-    return !apiData?.next || apiData.results.length < 10;
+    return !apiData?.next || apiData.results.length < cardsPerPage;
   };
 
   const handlePrevClick = () => {
