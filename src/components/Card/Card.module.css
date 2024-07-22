@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background-color: #fff;
-  transition: transform 0.2s linear;
-  cursor: pointer;
+  height: 90%;
   border-radius: 5px;
   padding: 10px;
-  height: 90%;
+  background-color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s linear;
 }
 
 .card:hover {

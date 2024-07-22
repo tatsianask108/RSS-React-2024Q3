@@ -3,14 +3,23 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-accent: #223a4b;
+  --color-background: #fff;
+  --color-border: #223a4b;
+  --color-hover: rgba(100, 108, 255, 0.685);
+  --color-card-border: rgba(100, 108, 255, 0.685);
+}
+
+.darkTheme {
+  --color-background: #223a4b;
+  --color-accent: #fff;
+  --color-border: #fff;
+  --color-hover: rgba(8, 11, 59, 0.89);
 }
 
 a {
@@ -28,22 +37,19 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url(./assets/thumb.jpg);
+
+  color: var(--color-accent);
+  background-image: url(./assets/thumbLight.png);
   background-size: cover;
   background-position: center;
+  transition: all 0.3s linear;
+}
+
+body.darkTheme {
+  background-image: url(./assets/thumb.jpg);
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #5a87b1;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
 }

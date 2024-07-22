@@ -5,13 +5,14 @@ import Search from '../../Search/Search';
 import Loader from '../../shared/Loader/Loader';
 import Header from '../../Header/Header';
 import { Outlet, useSearchParams } from 'react-router-dom';
-import styles from './MainPage.module.css';
 import Pagination from '../../Pagination/Pagination';
 import useLocalStorage from '../../../hooks/useLocalStorage';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../state/store';
 import { changePages } from '../../../state/pageSlice';
 import { SEARCH_VALUE } from '../../../constants';
+
+import styles from './MainPage.module.css';
 
 const MainPage = () => {
   const [apiData, setApiData] = useState<IApiData>();

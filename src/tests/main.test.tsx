@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import App from '../app/App';
 import ErrorBoundary from '../components/Error/ErrorBoundary';
 import FallBack from '../components/Error/FallBack';
 import { describe, it, expect } from 'vitest';

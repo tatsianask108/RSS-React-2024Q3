@@ -14,10 +14,8 @@
     "coverage": "vitest run --coverage"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,css}": [
-      "eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-      "prettier --write -l"
-    ]
+    "src/**/*.{ts,tsx}": "eslint",
+    "src/**/*.{ts,tsx,css}": "prettier --write -l"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",

@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { IButton } from './types';
 import styles from './Button.module.css';
 
-const Button: FC<IButton> = ({ /*className,*/ children, ...props }) => {
+const Button: FC<IButton> = ({ className, children, ...props }) => {
   return (
-    <button className={`${styles.btn} /*className*/`} {...props}>
+    <button className={`${styles.button} ${className} `} {...props}>
       {children}
     </button>
   );

@@ -4,7 +4,6 @@ import styles from './DetailedPage.module.css';
 import { useEffect, useState } from 'react';
 import { getPlanetIdFromUseParams } from '../../../utils/utils';
 import Button from '../../shared/Button/Button';
-// import { CloseIcon } from '../../shared/icons/CloseIcon';
 import { CARD_FIELDS_DETAILED } from './constants';
 import Loader from '../../shared/Loader/Loader';
 
@@ -54,7 +53,7 @@ const DetailedPage = () => {
         ) : (
           <>
             <Button className={styles.btnClose} onClick={closeOutlet} data-testid="close-button">
-              {/* <CloseIcon /> */}
+              Close
             </Button>
             <h1 data-testid={'heading'}>{planet?.name}</h1>
             {renderPlanetDescription()}
