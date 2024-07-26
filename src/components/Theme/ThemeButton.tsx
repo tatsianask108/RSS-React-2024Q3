@@ -10,7 +10,7 @@ const ThemeToggler = () => {
     document.body.classList.toggle('darkTheme');
   };
 
-  return <Button onClick={handleClick}>{darkTheme ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</Button>;
+  return <Button onClick={handleClick}>Switch to {darkTheme ? 'Light' : 'Dark'} Mode</Button>;
 };
 
 export default ThemeToggler;
