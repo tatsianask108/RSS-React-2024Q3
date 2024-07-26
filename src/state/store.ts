@@ -1,13 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pageReducer from './pageSlice';
+import pageReducer from './slices/pageSlice/pageSlice';
 import { DEFAULT_PAGE_NUMBER } from '../constants';
+import { swAPI } from '../services/swAPI';
 export const store = configureStore({
   reducer: {
     page: pageReducer,
+    [swAPI.reducerPath]: swAPI.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(swAPI.middleware),
   preloadedState: {
     page: {
-      number: parseInt(new URL(window.location.href).searchParams.get('page') || String(DEFAULT_PAGE_NUMBER), 10),
+      pageNumber: parseInt(new URL(window.location.href).searchParams.get('page') || String(DEFAULT_PAGE_NUMBER), 10),
     },
   },
 });

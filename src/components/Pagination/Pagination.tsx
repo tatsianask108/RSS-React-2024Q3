@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import { cardsPerPage } from '../../constants';
 import Button from '../shared/Button/Button';
 import styles from './Pagination.module.css';
 import { IPaginationProps } from './types';
 
 const Pagination: React.FC<IPaginationProps> = ({ currentPage, changePage, apiData }) => {
+  const navigate = useNavigate();
+
   const isPrevDisabled = () => {
     return !apiData?.previous || apiData.results.length < cardsPerPage;
   };
@@ -14,10 +17,12 @@ const Pagination: React.FC<IPaginationProps> = ({ currentPage, changePage, apiDa
 
   const handlePrevClick = () => {
     changePage(currentPage - 1);
+    navigate(`?page=${Number(currentPage) - 1}`);
   };
 
   const handleNextClick = () => {
     changePage(currentPage + 1);
+    navigate(`?page=${Number(currentPage) + 1}`);
   };
 
   return (

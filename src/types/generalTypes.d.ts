@@ -17,5 +17,5 @@ interface IPlanet {
 }
 
 interface IPageState {
-  number: number;
+  pageNumber: number;
 }
