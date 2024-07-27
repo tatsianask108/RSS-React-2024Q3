@@ -19,3 +19,13 @@ interface IPlanet {
 interface IPageState {
   pageNumber: number;
 }
+
+interface ISearchState {
+  searchQuery: string;
+}
+
+interface IQueryParams {
+  searchQuery: string;
+
+  page: number;
+}

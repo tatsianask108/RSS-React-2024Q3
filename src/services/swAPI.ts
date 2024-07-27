@@ -4,15 +4,13 @@ export const swAPI = createApi({
   reducerPath: 'swAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://swapi.dev/api' }),
   endpoints: (build) => ({
-    fetchAllPlanets: build.query<IApiData, string>({
-      query: (page) => ({
-        url: `/planets/?page=${page}`,
-      }),
+    fetchAllPlanets: build.query<IApiData, IQueryParams>({
+      query: ({ page, searchQuery }) => {
+        const pageUrl = `/planets/?page=${page}`;
+        const url = searchQuery ? `/planets/?search=${searchQuery}` : pageUrl;
+        return { url };
+      },
+      keepUnusedDataFor: 0,
     }),
-    fetchPlanetById: build.query<IPlanet, string>({
-      query: (planetId) => ({
-        url: `/planets/${planetId}`,
-      }),
-    })
   }),
 });
