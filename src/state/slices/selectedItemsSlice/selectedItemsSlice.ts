@@ -14,9 +14,12 @@ const selectedItemsSlice = createSlice({
     deleteItem: (state, action: PayloadAction<number>) => {
       state.selectedItems.splice(action.payload, 1);
     },
+    deleteAllItems: (state) => {
+      state.selectedItems = [];
+    },
   },
 });
 
-export const { addItem, deleteItem } = selectedItemsSlice.actions;
+export const { addItem, deleteItem, deleteAllItems } = selectedItemsSlice.actions;
 
 export default selectedItemsSlice.reducer;

@@ -22,7 +22,7 @@ const MainPage = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleChangePage = (newPage: number) => {
+  const handlePageChange = (newPage: number) => {
     dispatch(changePage(newPage));
   };
 
@@ -50,7 +50,7 @@ const MainPage = () => {
         ) : (
           <section>
             <CardList itemsList={planetList} currentPage={page} />
-            <Pagination apiData={data} currentPage={page} changePage={handleChangePage} />
+            <Pagination apiData={data} currentPage={page} changePage={handlePageChange} />
           </section>
         )}
         {/* <Outlet /> */}
