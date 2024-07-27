@@ -1,22 +1,18 @@
-// import { NavLink } from 'react-router-dom';
 import Card from '../Card/Card';
 import Flyout from '../Flyout/Flyout';
 import styles from './CardList.module.css';
 import { TCardList } from './types';
-// import { createCardUrl } from '../../utils/utils';
 
-const CardList = ({ itemsList: planetsList /*currentPage*/ }: TCardList) => {
+const CardList = ({ itemsList: planetsList }: TCardList) => {
   return (
     <>
       <h2>Search results: </h2>
       {Array.isArray(planetsList) ? (
         planetsList.length ? (
           <>
-            <div className={styles.cardList}>
+            <div className={styles.cardList} data-testid="cardList">
               {planetsList.map((planet, index) => (
-                // <NavLink key={planet.name} to={`${createCardUrl(currentPage, planet.url)}`}>
                 <Card key={`${planet.name}_${index}`} planet={planet} />
-                // </NavLink>
               ))}
             </div>
             <Flyout />

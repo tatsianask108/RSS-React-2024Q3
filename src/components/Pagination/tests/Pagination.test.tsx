@@ -1,12 +1,17 @@
 import { render, fireEvent } from '@testing-library/react';
 import Pagination from '../Pagination';
 import { IPaginationProps } from '../types';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('Pagination Component: ', () => {
   const mockChangePage = vi.fn();
 
   const renderPagination = (props: IPaginationProps) => {
-    return render(<Pagination {...props} />);
+    return render(
+      <MemoryRouter>
+        <Pagination {...props} />
+      </MemoryRouter>
+    );
   };
 
   afterEach(() => {

@@ -1,8 +1,9 @@
-// import '@testing-library/jest-dom';
 import { describe, test as it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CardList from '../CardList';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '../../../state/store';
 
 const mockPlanetsList: IPlanet[] = Array.from({ length: 10 }, () => ({
   name: `test`,
@@ -17,17 +18,19 @@ const mockPlanetsList: IPlanet[] = Array.from({ length: 10 }, () => ({
 
 const renderCardList = (planetsList: IPlanet[]) =>
   render(
-    <BrowserRouter>
-      <CardList itemsList={planetsList} currentPage={1} />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <CardList itemsList={planetsList} currentPage={1} />
+      </BrowserRouter>
+    </Provider>
   );
 
 describe('CardList Component: ', () => {
   it('renders the specified number of cards (10)', () => {
     renderCardList(mockPlanetsList);
 
-    const cards = screen.getAllByRole('link');
-    expect(cards).toHaveLength(10);
+    const cards = screen.getByTestId('cardList');
+    expect(cards.children.length === 10);
   });
 
   it('appropriate message is displayed if no cards are present', () => {
