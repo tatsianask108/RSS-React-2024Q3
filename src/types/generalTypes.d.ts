@@ -24,6 +24,10 @@ interface ISearchState {
   searchQuery: string;
 }
 
+interface ISelectedItemsState {
+  selectedItems: IPlanet[];
+}
+
 interface IQueryParams {
   searchQuery: string;
 

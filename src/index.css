@@ -13,6 +13,7 @@
   --color-border: #223a4b;
   --color-hover: rgba(100, 108, 255, 0.685);
   --color-card-border: rgba(100, 108, 255, 0.685);
+  --color-card-bg: #fff;
 }
 
 .darkTheme {
@@ -20,6 +21,7 @@
   --color-accent: #fff;
   --color-border: #fff;
   --color-hover: rgba(8, 11, 59, 0.89);
+  --color-card-bg: #a1a4ab;
 }
 
 a {

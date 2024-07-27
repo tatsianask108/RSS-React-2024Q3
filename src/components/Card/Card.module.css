@@ -5,9 +5,9 @@
   height: 90%;
   border-radius: 5px;
   padding: 10px;
-  background-color: #fff;
+  background-color: var(--color-card-bg);
   cursor: pointer;
-  transition: transform 0.2s linear;
+  transition: all 0.2s linear;
 }
 
 .card:hover {
@@ -16,4 +16,8 @@
 
 .info {
   margin: 5px;
+}
+
+.checkbox {
+  height: 25px;
 }
