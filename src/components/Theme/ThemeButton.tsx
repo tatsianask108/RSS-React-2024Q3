@@ -1,4 +1,4 @@
-import { useTheme, useThemeUpdate } from './ThemeContext';
+import { useTheme, useThemeUpdate } from '../../hooks/themes';
 import Button from '../shared/Button/Button';
 
 const ThemeToggler = () => {

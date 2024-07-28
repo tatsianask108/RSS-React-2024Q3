@@ -1,15 +1,5 @@
-import React, { ReactNode, useContext, useState } from 'react';
-
-const ThemeContext = React.createContext<boolean | undefined>(undefined);
-const ThemeUpdateContext = React.createContext<(() => void) | undefined>(undefined);
-
-export const useTheme = () => {
-  return useContext(ThemeContext);
-};
-
-export const useThemeUpdate = () => {
-  return useContext(ThemeUpdateContext);
-};
+import React, { ReactNode, useState } from 'react';
+import { ThemeContext, ThemeUpdateContext } from '../../hooks/themes';
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [darkTheme, setDarkTheme] = useState(false);

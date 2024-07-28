@@ -32,11 +32,11 @@ const MainPage = () => {
 
   useEffect(() => {
     navigate(`?page=${page}`);
-  }, [searchQuery]);
+  }, [page, searchQuery, navigate]);
 
   useEffect(() => {
     navigate(`?page=${page}`);
-  }, [page]);
+  }, [page, navigate]);
 
   return (
     <div data-testid="mainPage">
