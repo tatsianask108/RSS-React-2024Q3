@@ -53,7 +53,6 @@ const MainPage = () => {
             <Pagination apiData={data} currentPage={page} changePage={handlePageChange} />
           </section>
         )}
-        {/* <Outlet /> */}
       </main>
     </div>
   );
