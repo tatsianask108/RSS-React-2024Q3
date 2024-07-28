@@ -1,71 +1,58 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import CardList from '../../CardList/CardList';
-import { fetchAllPlanets } from '../../../services/ApiService';
 import Search from '../../Search/Search';
 import Loader from '../../shared/Loader/Loader';
 import Header from '../../Header/Header';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Pagination from '../../Pagination/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../state/store';
+import { changePage } from '../../../state/slices/pageSlice/pageSlice';
+import { swAPI } from '../../../services/swAPI';
+import { setSearchQuery } from '../../../state/slices/searchSlice/searchSlice';
 
 import styles from './MainPage.module.css';
-import Pagination from '../../Pagination/Pagination';
-import useLocalStorage from '../../../hooks/useLocalStorage';
-
-const SEARCH_VALUE = 'searchValueTS';
 
 const MainPage = () => {
-  const [apiData, setApiData] = useState<IApiData>();
-  const [planetsList, setPlanetsList] = useState<IPlanet[]>();
-  const [isLoading, setLoading] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-  const { getValueFromLS } = useLocalStorage(SEARCH_VALUE);
-  const [searchValue] = useState(getValueFromLS());
+  const page = useSelector((state: RootState) => state.page.pageNumber);
+  const searchQuery = useSelector((state: RootState) => state.search.searchQuery);
+  const { data: data, isFetching } = swAPI.useFetchAllPlanetsQuery({ page, searchQuery });
+  const planetList = data?.results || [];
+
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handlePageChange = (newPage: number) => {
-    setPage(newPage);
-    setSearchParams({ page: String(newPage) });
+    dispatch(changePage(newPage));
   };
 
-  const getPlanets = useCallback(
-    async (searchValue: string) => {
-      setLoading(true);
-
-      try {
-        const data: IApiData | undefined = await fetchAllPlanets(searchValue, page);
-        if (data && Array.isArray(data.results)) {
-          const planetList = data.results;
-          setApiData(data);
-          setPlanetsList(planetList);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [page]
-  );
+  const handleSearch = (searchValue: string) => {
+    dispatch(setSearchQuery(searchValue));
+  };
 
   useEffect(() => {
-    getPlanets(searchValue);
-  }, [page, getPlanets, searchValue]);
+    navigate(`?page=${page}`);
+  }, [page, searchQuery, navigate]);
+
+  useEffect(() => {
+    navigate(`?page=${page}`);
+  }, [page, navigate]);
 
   return (
     <div data-testid="mainPage">
       <Header />
       <main className={styles.main}>
         <section>
-          <Search searchFunction={getPlanets} />
+          <Search searchFunction={handleSearch} />
         </section>
-        {isLoading ? (
+        {isFetching ? (
           <Loader />
         ) : (
           <section>
-            <CardList itemsList={planetsList} currentPage={page} />
-            <Pagination apiData={apiData} currentPage={page} changePage={handlePageChange} />
+            <CardList itemsList={planetList} currentPage={page} />
+            <Pagination apiData={data} currentPage={page} changePage={handlePageChange} />
           </section>
         )}
-        <Outlet />
       </main>
     </div>
   );

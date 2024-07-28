@@ -1,3 +1,3 @@
 export interface ISearchProps {
-  searchFunction: (searchValue: string) => Promise<void>;
+  searchFunction: (searchValue: string) => void;
 }

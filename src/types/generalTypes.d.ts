@@ -15,3 +15,21 @@ interface IPlanet {
   diameter: string;
   url: string;
 }
+
+interface IPageState {
+  pageNumber: number;
+}
+
+interface ISearchState {
+  searchQuery: string;
+}
+
+interface ISelectedItemsState {
+  selectedItems: IPlanet[];
+}
+
+interface IQueryParams {
+  searchQuery: string;
+
+  page: number;
+}
